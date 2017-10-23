@@ -13,11 +13,12 @@ export default class HomeContainer extends Component {
   constructor(){
     super()
     this.state = {
-      user: 1,
-      admin: null
+      user: null,
+      admin: false
     }
     this.onVerifySubmit = this.onVerifySubmit.bind(this)
     this.onLoginSubmit = this.onLoginSubmit.bind(this)
+    this.onLogout = this.onLogout.bind(this)
   }
 
   onVerifySubmit(event){
@@ -26,9 +27,13 @@ export default class HomeContainer extends Component {
     var dob = event.target.children[4].children[1].value
     UserAdapter.verifyUser(name,dob)
     .then(user => {
-      this.setState({
-        user:user[0].id
-      })
+      if (!user.error) {
+        localStorage.setItem("user_id",user[0].id)
+        this.setState({
+          user: user[0].id
+        })
+        window.location = ('/home')
+      }
     })
   }
 
@@ -41,26 +46,32 @@ export default class HomeContainer extends Component {
     if (!user.error) {
       localStorage.setItem("user_id",user[0].id)
       this.setState({
-        user: user[0].id
+        user: user[0].id,
+        admin: true
       })
       window.location = ('/home')
     }
   })
 }
 
+  onLogout(event){
+    localStorage.clear()
+    window.location = ('/home')
+  }
+
   render(){
-    if (this.state.user === null){
+    if (localStorage.user_id){
       return(
-        <Verify id={this.onVerifySubmit}/>
+        <BrowserRouter>
+          <div>
+            <Route exact path = '/home' render= {() => <Home user={this.state.user}/>}/>
+            <Route exact path = '/login' render= {() => <Login onLogout={this.onLogout} login={this.onLoginSubmit} user={this.state.user}/>}/>
+          </div>
+        </BrowserRouter>
       )
     } else{
     return(
-      <BrowserRouter>
-        <div>
-          <Route exact path = '/' render= {() => <Home user={this.state.user}/>}/>
-          <Route exact path = '/login' render= {() => <Login login={this.onLoginSubmit} user={this.state.user}/>}/>
-        </div>
-      </BrowserRouter>
+      <Verify id={this.onVerifySubmit}/>
     )}
   }
 }

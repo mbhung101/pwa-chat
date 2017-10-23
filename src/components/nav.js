@@ -9,7 +9,7 @@ export default class Nav extends Component {
           <a href="/home" className="item">Home</a>
         </div>
         <div style={{padding:10}}>
-          <a href="/loging" className="item">Login/Logout</a>
+          <a href="/login" className="item">Login/Logout</a>
         </div>
       </div>
     )
