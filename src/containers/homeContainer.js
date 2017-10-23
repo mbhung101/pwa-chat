@@ -3,9 +3,11 @@ import { Route, BrowserRouter } from 'react-router-dom'
 import Verify from '../components/verify'
 import Home from '../components/home'
 import Login from '../components/login'
+import Room from '../components/room'
 import UserAdapter from '../adapters/userAdapter'
 import MessageAdapter from '../adapters/messageAdapter'
 import ChatRoomAdapter from '../adapters/chatRoomAdapter'
+
 
 
 export default class HomeContainer extends Component {
@@ -45,10 +47,7 @@ export default class HomeContainer extends Component {
     .then(user => {
     if (!user.error) {
       localStorage.setItem("user_id",user[0].id)
-      this.setState({
-        user: user[0].id,
-        admin: true
-      })
+      localStorage.setItem("admin",true)
       window.location = ('/home')
     }
   })
@@ -64,8 +63,9 @@ export default class HomeContainer extends Component {
       return(
         <BrowserRouter>
           <div>
-            <Route exact path = '/home' render= {() => <Home user={this.state.user}/>}/>
+            <Route exact path = '/home' render= {() => <Home user={this.state.user} admin={this.state.admin}/>}/>
             <Route exact path = '/login' render= {() => <Login onLogout={this.onLogout} login={this.onLoginSubmit} user={this.state.user}/>}/>
+            <Route exact path = '/room' render= {() => <Room/>}/>
           </div>
         </BrowserRouter>
       )

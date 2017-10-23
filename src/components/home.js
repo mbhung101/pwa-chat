@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import Nav from './nav'
 import ChatRoomAdapter from '../adapters/chatRoomAdapter'
+import MessageAdapter from '../adapters/messageAdapter'
 
 
 export default class Home extends Component {
@@ -9,10 +10,12 @@ export default class Home extends Component {
     super(props)
     this.state = {
       user: localStorage.user_id,
+      admin: localStorage.admin,
       chatrooms: []
     }
     this.render = this.render.bind(this)
     this.tableRows = this.tableRows.bind(this)
+    this.onJoinChat = this.onJoinChat.bind(this)
   }
 
   componentWillMount(){
@@ -29,31 +32,25 @@ export default class Home extends Component {
     })
   }
 
+  onJoinChat(event){
+    event.preventDefault()
+    var name = event.target.innerText
+    localStorage.setItem("room_name",name)
+    window.location = ('/room')
+  }
+
   tableRows(){
     return this.state.chatrooms.map((chatroom)=>
     <tr className="">
-      <td className="">{chatroom}</td>
+      <td className=""><a onClick={this.onJoinChat}> {chatroom} </a>
+      </td>
     </tr>
     )
   }
 
 
-
-//   alertDisplay (){
-//   var newAlerts = this.changeAlerts(this.state.alerts)
-//   return this.state.alerts.map((alert)=>
-//     <div key={alert.id}   className="row">
-//       <div className = "col s10"><h5> <div id={alert.priority}> {alert.date+ " " + alert.message} </div> </h5></div>
-//     <div style={{paddingTop:25}}>
-//       <Button id={alert.id} onClick={this.props.deleteAlert} floating className='red' waves='light' icon='delete' />
-//     </div>
-//     <br></br>
-//     </div>
-//   )
-// }
-
-
   render (){
+    if (this.state.admin === false){
     return (
       <div className="ui container">
         <Nav/>
@@ -68,6 +65,24 @@ export default class Home extends Component {
           </tbody>
         </table>
       </div>
-    )
+    )} else{
+      return(
+        <div className="ui container">
+          <Nav/>
+          <h3> Hello Doctore</h3>
+          <table className="ui celled table">
+            <thead className="">
+              <tr className="">
+                <th className="">Chatrooms</th>
+              </tr>
+              </thead>
+            <tbody className="">
+              {this.tableRows()}
+            </tbody>
+          </table>
+
+        </div>
+      )
+    }
   }
 }
