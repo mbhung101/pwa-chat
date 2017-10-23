@@ -8,16 +8,22 @@ export default class Home extends Component {
   constructor(props){
     super(props)
     this.state = {
-      user: this.props.user
+      user: this.props.user,
+      chatrooms: []
     }
+    this.render = this.render.bind(this)
   }
 
   componentWillMount(){
     var id = this.state.user
     ChatRoomAdapter.gatherChatRooms(id)
-    .then(user => {
+    .then(chatrooms => {
+      var names = []
+      for (var i in chatrooms){
+        names.push(chatrooms[i].name)
+      }
       this.setState({
-        user:user[0].id
+        chatrooms: names
       })
     })
   }
@@ -26,7 +32,8 @@ export default class Home extends Component {
     return (
       <div className="ui container">
         <Nav/>
-
+        {this.state.user}
+        {this.state.chatrooms}
       </div>
     )
   }

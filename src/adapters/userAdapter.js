@@ -12,6 +12,18 @@ export default class UserAdapter  {
     }).then(response => response.json() )
   }
 
+  static currentUser(name,password){
+    return fetch("http://localhost:3000/api/users", {
+      method: 'POST',
+      headers: this.headers(),
+      body: JSON.stringify({
+        name:name,
+        password:password,
+        online: true
+      })
+    }).then(response => response.json() )
+  }
+
   static headers(){
   return {
     'content-type': 'application/json',
