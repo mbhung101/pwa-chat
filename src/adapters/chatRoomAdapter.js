@@ -1,13 +1,11 @@
 export default class ChatRoomAdapter  {
 
-  static createChatRoom(alert){
+  static gatherChatRooms(user_id){
     return fetch("http://localhost:3000/api/chatrooms", {
       method: 'POST',
       headers: this.headers(),
       body: JSON.stringify({
-        name:'bobsroom',
-        user_id: 1,
-        chatroom_id: 1
+        user_id: 1
       })
     }).then(response => response.json() )
   }

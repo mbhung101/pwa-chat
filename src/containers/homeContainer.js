@@ -12,14 +12,13 @@ export default class HomeContainer extends Component {
   constructor(){
     super()
     this.state = {
-      user: null
+      user: 1
     }
     this.onVerifySubmit = this.onVerifySubmit.bind(this)
   }
 
   onVerifySubmit(event){
     event.preventDefault()
-
     var name = event.target.children[0].children[1].value + " " + event.target.children[2].children[1].value
     var dob = event.target.children[4].children[1].value
     UserAdapter.verifyUser(name,dob)
