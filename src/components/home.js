@@ -71,7 +71,6 @@ export default class Home extends Component {
     )} else{
       return(
         <div className="ui container">
-        Hello filty peasant
           <Nav/>
           <table className="ui celled table">
             <thead className="">
