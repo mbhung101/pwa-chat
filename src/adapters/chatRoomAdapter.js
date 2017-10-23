@@ -20,6 +20,22 @@ export default class ChatRoomAdapter  {
     }).then(response => response.json() )
   }
 
+  static newChat(patient,dob,phone,room_name,user_id,message){
+    return fetch("http://localhost:3000/api/chatrooms", {
+      method: 'POST',
+      headers: this.headers(),
+      body: JSON.stringify({
+        user_id:user_id,
+        dob:dob,
+        phone:phone,
+        room_name: room_name,
+        patient_name: patient,
+        message: message
+      })
+    }).then(response => response.json() )
+  }
+
+
   static headers(){
   return {
     'content-type': 'application/json',

@@ -9,6 +9,18 @@ export default class MessageAdapter  {
     }).then(response => response.json() )
   }
 
+  static newMessage(user_id,room_name,message){
+    return fetch("http://localhost:3000/api/messages", {
+      method: 'POST',
+      headers: this.headers(),
+      body: JSON.stringify({
+        user_id: user_id,
+        room_name: room_name,
+        message: message
+      })
+    }).then(response => response.json() )
+  }
+
   static headers(){
   return {
     'content-type': 'application/json',

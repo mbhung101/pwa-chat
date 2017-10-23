@@ -24,6 +24,16 @@ export default class UserAdapter  {
     }).then(response => response.json() )
   }
 
+  static getUser(id){
+    return fetch("http://localhost:3000/api/users", {
+      method: 'POST',
+      headers: this.headers(),
+      body: JSON.stringify({
+        id:id
+      })
+    }).then(response => response.json() )
+  }
+
   static headers(){
   return {
     'content-type': 'application/json',

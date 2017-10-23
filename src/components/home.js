@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import Nav from './nav'
 import ChatRoomAdapter from '../adapters/chatRoomAdapter'
-import MessageAdapter from '../adapters/messageAdapter'
 
 
 export default class Home extends Component {
@@ -49,10 +48,13 @@ export default class Home extends Component {
   }
 
 
+
+
   render (){
-    if (this.state.admin === false){
+    if (localStorage.admin){
     return (
       <div className="ui container">
+      Salutations Doctore
         <Nav/>
         <table className="ui celled table">
           <thead className="">
@@ -64,12 +66,13 @@ export default class Home extends Component {
             {this.tableRows()}
           </tbody>
         </table>
+        <a href="/newRoom">Converse with new peasant</a>
       </div>
     )} else{
       return(
         <div className="ui container">
+        Hello filty peasant
           <Nav/>
-          <h3> Hello Doctore</h3>
           <table className="ui celled table">
             <thead className="">
               <tr className="">
@@ -80,7 +83,6 @@ export default class Home extends Component {
               {this.tableRows()}
             </tbody>
           </table>
-
         </div>
       )
     }
