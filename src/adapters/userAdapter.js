@@ -1,14 +1,12 @@
 export default class UserAdapter  {
 
-  static createUser(alert){
+  static verifyUser(name,dob){
     return fetch("http://localhost:3000/api/users", {
       method: 'POST',
       headers: this.headers(),
       body: JSON.stringify({
-        name:'bob',
-        phone: '123',
-        dob: '456',
-        pca: 'a',
+        name:name,
+        dob:dob,
         online: true
       })
     }).then(response => response.json() )

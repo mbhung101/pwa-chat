@@ -1,14 +1,11 @@
 import React, { Component } from 'react';
-import { Router, browserHistory, Route, Link } from 'react-router';
-import Home from './components/home'
+import HomeContainer from './containers/homeContainer'
 
 export default class App extends Component {
 
   render() {
     return (
-      <Router history={browserHistory}>
-        <Route path="/" component={Home}/>
-      </Router>
+      <HomeContainer />
     );
   }
 }
