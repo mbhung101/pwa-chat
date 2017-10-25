@@ -66,7 +66,7 @@ export default class Home extends Component {
             {this.tableRows()}
           </tbody>
         </table>
-        <a href="/newRoom">Converse with new peasant</a>
+        <a href="/newRoom">Converse with new patient</a>
       </div>
     )} else{
       return(
