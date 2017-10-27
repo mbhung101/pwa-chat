@@ -1,7 +1,7 @@
 export default class UserAdapter  {
 
   static verifyUser(name,dob){
-    return fetch("http://localhost:3000/api/users", {
+    return fetch("https://sheltered-hamlet-95377.herokuapp.com/api/users", {
       method: 'POST',
       headers: this.headers(),
       body: JSON.stringify({
