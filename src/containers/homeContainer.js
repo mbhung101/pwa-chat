@@ -50,8 +50,9 @@ export default class HomeContainer extends Component {
     var password = event.target.children[4].children[1].value
     UserAdapter.currentUser(name,password)
     .then(user => {
+    debugger
     if (!user.error) {
-      localStorage.setItem("user_id",parseInt(user[0].id))
+      localStorage.setItem("user_id",user[0].id)
       localStorage.setItem("name",user[0].name)
       localStorage.setItem("admin",true)
       window.location = ('/home')
@@ -62,7 +63,7 @@ export default class HomeContainer extends Component {
   back (event){
     event.preventDefault()
     localStorage.clear()
-    window.location = ('/home')    
+    window.location = ('/home')
   }
 
 newPat(event){

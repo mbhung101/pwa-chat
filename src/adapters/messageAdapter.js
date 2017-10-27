@@ -1,6 +1,6 @@
 export default class MessageAdapter  {
   static enterRoom(name){
-    return fetch("http://localhost:3000/api/messages", {
+    return fetch("https://sheltered-hamlet-95377.herokuapp.com/api/messages", {
       method: 'POST',
       headers: this.headers(),
       body: JSON.stringify({
@@ -10,7 +10,7 @@ export default class MessageAdapter  {
   }
 
   static newMessage(user_id,room_name,message){
-    return fetch("http://localhost:3000/api/messages", {
+    return fetch("https://sheltered-hamlet-95377.herokuapp.com/api/messages", {
       method: 'POST',
       headers: this.headers(),
       body: JSON.stringify({
