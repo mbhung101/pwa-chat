@@ -35,10 +35,8 @@ export default class Room extends Component {
 
     var self = this
     self.state.socket.on("receive-message",function(msg){
-      var allMsg = self.state.messages
-      allMsg.push(msg)
       self.setState({
-        messages:allMsg
+        messages:msg
       })
     })
   }
@@ -49,12 +47,8 @@ export default class Room extends Component {
     var uid = parseInt(localStorage.user_id)
     MessageAdapter.newMessage(uid,localStorage.room_name,nms)
     .then(messages => {
-      this.setState({
-        messages: messages
-      })
+    this.state.socket.emit("new-message", messages)
     })
-    var message = document.getElementById('message').value
-    this.state.socket.emit("new-message", message)
   }
 
   messageFormatter(arr){
