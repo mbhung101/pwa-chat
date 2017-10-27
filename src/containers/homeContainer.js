@@ -50,7 +50,6 @@ export default class HomeContainer extends Component {
     var password = event.target.children[4].children[1].value
     UserAdapter.currentUser(name,password)
     .then(user => {
-    debugger
     if (!user.error) {
       localStorage.setItem("user_id",user[0].id)
       localStorage.setItem("name",user[0].name)

@@ -2,6 +2,7 @@ import React, { Component } from  'react'
 import MessageAdapter from '../adapters/messageAdapter'
 import UserAdapter from '../adapters/userAdapter'
 import ChatRoomAdapter from '../adapters/chatRoomAdapter'
+import TextAdapter from '../adapters/textAdapter'
 import Nav from './nav'
 
 export default class Room extends Component {
@@ -52,6 +53,7 @@ export default class Room extends Component {
       messages: messages
     })
     })
+    TextAdapter.sendText(nms,this.state.conversant)
   }
 
   messageFormatter(arr){
@@ -69,7 +71,7 @@ export default class Room extends Component {
       } else{
         history.push(
           <div style={{padding:10}}>
-          {conversant} says:
+          Aalap says:
           <br></br>
           {msg.message}
           <br></br>

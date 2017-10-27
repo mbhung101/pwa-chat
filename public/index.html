@@ -14,6 +14,20 @@
     <!-- Make sure theme-color is defined -->
     <meta name="theme-color" content="#536878">
     <title>React App</title>
+    <script>
+    if (‘serviceWorker’ in navigator) {
+      window.addEventListener(‘load’, function() {
+        navigator.serviceWorker.register(‘/sw.js’).then(
+          function(registration) {
+            // Registration was successful
+            console.log(‘ServiceWorker registration successful with scope: ‘, registration.scope); },
+          function(err) {
+            // registration failed :(
+            console.log(‘ServiceWorker registration failed: ‘, err);
+          });
+      });
+    }
+    </script>
   </head>
   <body>
     <!-- Filler HTML as our app starts up -->
@@ -29,24 +43,7 @@
       <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
       <script>
         var socket = io();
-      </script>      
+      </script>
     </div>
-    <script>
-      if ('serviceWorker' in navigator) {
-        window.addEventListener('load', function() {
-          navigator.serviceWorker.register('service-worker.js').then(function(registration) {
-            // Registration was successful
-            console.log('ServiceWorker registration successful with scope: ', registration.scope);
-          }, function(err) {
-            // registration failed :(
-            console.log('ServiceWorker registration failed: ', err);
-          }).catch(function(err) {
-            console.log(err)
-          });
-        });
-      } else {
-        console.log('service worker is not supported');
-      }
-    </script>
   </body>
 </html>
