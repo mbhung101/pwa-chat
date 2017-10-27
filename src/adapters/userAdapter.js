@@ -1,7 +1,11 @@
 export default class UserAdapter  {
 
   static verifyUser(name,dob){
+<<<<<<< HEAD
+    return fetch("http//localhost:3000/api/users", {
+=======
     return fetch("https://sheltered-hamlet-95377.herokuapp.com/api/users", {
+>>>>>>> 91b9bcc7296278826c0acd56598c955da159109d
       method: 'POST',
       headers: this.headers(),
       body: JSON.stringify({
@@ -13,7 +17,11 @@ export default class UserAdapter  {
   }
 
   static currentUser(name,password){
+<<<<<<< HEAD
+    return fetch("http//localhost:3000/api/users", {
+=======
     return fetch("https://sheltered-hamlet-95377.herokuapp.com/api/users", {
+>>>>>>> 91b9bcc7296278826c0acd56598c955da159109d
       method: 'POST',
       headers: this.headers(),
       body: JSON.stringify({
@@ -25,7 +33,11 @@ export default class UserAdapter  {
   }
 
   static getUser(id){
+<<<<<<< HEAD
+    return fetch("http//localhost:3000/api/users", {
+=======
     return fetch("https://sheltered-hamlet-95377.herokuapp.com/api/users", {
+>>>>>>> 91b9bcc7296278826c0acd56598c955da159109d
       method: 'POST',
       headers: this.headers(),
       body: JSON.stringify({
