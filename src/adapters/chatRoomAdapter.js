@@ -1,11 +1,7 @@
 export default class ChatRoomAdapter  {
 
   static gatherChatRooms(user_id){
-<<<<<<< HEAD
-    return fetch("http//localhost:3000/api/users", {
-=======
     return fetch("https://sheltered-hamlet-95377.herokuapp.com/api/chatrooms", {
->>>>>>> 91b9bcc7296278826c0acd56598c955da159109d
       method: 'POST',
       headers: this.headers(),
       body: JSON.stringify({
@@ -15,11 +11,7 @@ export default class ChatRoomAdapter  {
   }
 
   static enterRoom(name){
-<<<<<<< HEAD
-    return fetch("http//localhost:3000/api/chatrooms", {
-=======
     return fetch("https://sheltered-hamlet-95377.herokuapp.com/api/chatrooms", {
->>>>>>> 91b9bcc7296278826c0acd56598c955da159109d
       method: 'POST',
       headers: this.headers(),
       body: JSON.stringify({
@@ -29,11 +21,7 @@ export default class ChatRoomAdapter  {
   }
 
   static findUser(chatName){
-<<<<<<< HEAD
-    return fetch("http//localhost:3000/api/chatrooms", {
-=======
     return fetch("https://sheltered-hamlet-95377.herokuapp.com/api/chatrooms", {
->>>>>>> 91b9bcc7296278826c0acd56598c955da159109d
       method: 'POST',
       headers: this.headers(),
       body: JSON.stringify({
@@ -44,11 +32,7 @@ export default class ChatRoomAdapter  {
   }
 
   static newChat(patient,dob,phone,room_name,user_id,message){
-<<<<<<< HEAD
-    return fetch("http//localhost:3000/api/chatrooms", {
-=======
     return fetch("https://sheltered-hamlet-95377.herokuapp.com/api/chatrooms", {
->>>>>>> 91b9bcc7296278826c0acd56598c955da159109d
       method: 'POST',
       headers: this.headers(),
       body: JSON.stringify({
