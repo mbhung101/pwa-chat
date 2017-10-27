@@ -11,7 +11,7 @@ export default class Room extends Component {
     this.state = {
       messages:[],
       conversant: "",
-      socket: window.io("https://serene-river-23829.herokuapp.com")
+      socket: window.io("http://localhost:3001")
     }
     this.newMessage = this.newMessage.bind(this)
     this.messageFormatter = this.messageFormatter.bind(this)
