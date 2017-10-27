@@ -24,6 +24,7 @@ export default class HomeContainer extends Component {
     this.onLoginSubmit = this.onLoginSubmit.bind(this)
     this.onLogout = this.onLogout.bind(this)
     this.newPat = this.newPat.bind(this)
+    this.back = this.back.bind(this)
   }
 
   onVerifySubmit(event){
@@ -58,6 +59,12 @@ export default class HomeContainer extends Component {
   })
 }
 
+  back (event){
+    event.preventDefault()
+    localStorage.clear()
+    window.location = ('/home')    
+  }
+
 newPat(event){
   event.preventDefault()
   var patient = event.target.children[0].children[1].value
@@ -84,7 +91,7 @@ newPat(event){
         <BrowserRouter>
           <div>
             <Route exact path = '/home' render= {() => <Home user={this.state.user} admin={this.state.admin}/>}/>
-            <Route exact path = '/login' render= {() => <Login onLogout={this.onLogout} login={this.onLoginSubmit} user={this.state.user}/>}/>
+            <Route exact path = '/login' render= {() => <Login onLogout={this.onLogout} login={this.onLoginSubmit} back={this.back} user={this.state.user}/>}/>
             <Route exact path = '/room' render= {() => <Room/>}/>
             <Route exact path = '/newroom' render= {() => <NewRoom newPat={this.newPat}/>}/>
           </div>

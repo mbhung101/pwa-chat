@@ -9,6 +9,6 @@ io.on('connection', function(socket){
   })
 })
 
-http.listen("3001", function(){
+http.listen("https://serene-river-23829.herokuapp.com", function(){
   console.log("connected")
 });

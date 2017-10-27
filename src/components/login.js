@@ -37,6 +37,7 @@ export default class Login extends Component {
               <button type="submit" className="ui button" role="button">Submit</button>
             </form>
           </div>
+          <button onClick={this.props.back} className="ui button" role="button">Back to Patient Verification</button>          
         </div>
       </div>
     )
