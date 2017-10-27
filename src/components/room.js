@@ -48,6 +48,9 @@ export default class Room extends Component {
     MessageAdapter.newMessage(uid,localStorage.room_name,nms)
     .then(messages => {
     this.state.socket.emit("new-message", messages)
+    this.setState({
+      messages: messages
+    })
     })
   }
 
