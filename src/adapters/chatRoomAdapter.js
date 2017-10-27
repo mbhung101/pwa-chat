@@ -34,7 +34,7 @@ export default class ChatRoomAdapter  {
 
 
   static newChat(patient,dob,phone,room_name,user_id,message){
-    return fetch("http://localhost:3000/api/chatrooms", {
+    return fetch("https://pwabackend.herokuapp.com/api/chatrooms", {
       method: 'POST',
       headers: this.headers(),
       body: JSON.stringify({
