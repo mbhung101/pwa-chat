@@ -78,7 +78,6 @@ export default class Room extends Component {
           </div>)
       }
     })
-    document.getElementById('message').reset()
     return history
   }
 
