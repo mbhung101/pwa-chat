@@ -1,7 +1,7 @@
 export default class UserAdapter  {
 
   static verifyUser(name,dob){
-    return fetch("https://git.heroku.com/glacial-thicket-44922.git/users", {
+    return fetch("https://glacial-thicket-44922.herokuapp.com/api/users", {
       method: 'POST',
       headers: this.headers(),
       body: JSON.stringify({
@@ -13,7 +13,7 @@ export default class UserAdapter  {
   }
 
   static currentUser(name,password){
-    return fetch("https://git.heroku.com/glacial-thicket-44922.git/users", {
+    return fetch("https://glacial-thicket-44922.herokuapp.com/api/users", {
       method: 'POST',
       headers: this.headers(),
       body: JSON.stringify({
@@ -25,7 +25,7 @@ export default class UserAdapter  {
   }
 
   static getUser(id){
-    return fetch("https://git.heroku.com/glacial-thicket-44922.git/users", {
+    return fetch("https://glacial-thicket-44922.herokuapp.com/api/users", {
       method: 'POST',
       headers: this.headers(),
       body: JSON.stringify({
