@@ -1,6 +1,7 @@
 import React, { Component } from  'react'
 import MessageAdapter from '../adapters/messageAdapter'
 import UserAdapter from '../adapters/userAdapter'
+import ChatRoomAdapter from '../adapters/chatRoomAdapter'
 import Nav from './nav'
 
 export default class Room extends Component {
@@ -9,7 +10,8 @@ export default class Room extends Component {
     super(props)
     this.state = {
       messages:[],
-      conversant: ""
+      conversant: "",
+      socket: window.io("http://localhost:3001")
     }
     this.newMessage = this.newMessage.bind(this)
     this.messageFormatter = this.messageFormatter.bind(this)
@@ -22,12 +24,28 @@ export default class Room extends Component {
         messages: messages
       })
     })
-  }
 
+    ChatRoomAdapter.findUser(localStorage.room_name)
+      .then(users => {
+        var conversant = (users[0].name === localStorage.name ? users[1].name:users[0].name)
+          this.setState({
+            conversant : conversant
+          })
+        })
+
+    var self = this
+    self.state.socket.on("receive-message",function(msg){
+      var allMsg = self.state.messages
+      allMsg.push(msg)
+      self.setState({
+        messages:allMsg
+      })
+    })
+  }
 
   newMessage(event){
     event.preventDefault()
-    var nms = event.target.children[0].children[2].value
+    var nms = document.getElementById('message').value
     var uid = parseInt(localStorage.user_id)
     MessageAdapter.newMessage(uid,localStorage.room_name,nms)
     .then(messages => {
@@ -35,61 +53,47 @@ export default class Room extends Component {
         messages: messages
       })
     })
+    var message = document.getElementById('message').value
+    this.state.socket.emit("new-message", message)
   }
 
   messageFormatter(arr){
-    var other = 0
-    for (var i in arr){
-      if (arr[i].user_id !== parseInt(localStorage.user_id)){
-        other = arr[i].user_id
-      }
-    }
-      UserAdapter.getUser(other)
-      .then(conversant => {
-        localStorage.setItem("conversant",conversant[0].name)
-        })
-    var final = []
-    for (var j in arr){
-      if (arr[j].user_id === parseInt(localStorage.user_id)){
-        final.push(
+    var history = []
+    var conversant = this.state.conversant
+    arr.map(function(msg){
+      if(msg.user_id === parseInt(localStorage.user_id)){
+        history.push(
           <div style={{padding:10}}>
           {localStorage.name} says:
           <br></br>
-          {arr[j].message}
+          {msg.message}
           <br></br>
-          </div>
-        )
+          </div>)
       } else{
-      final.push(
-        <div style={{padding:10}}>
-        {localStorage.conversant} says:
-        <br></br>
-        {arr[j].message}
-        <br></br>
-        </div>
-      )
+        history.push(
+          <div style={{padding:10}}>
+          {conversant} says:
+          <br></br>
+          {msg.message}
+          <br></br>
+          </div>)
       }
-    }
-    return final
+    })
+    return history
   }
 
   render(){
-    if (this.state.messages.length>0){
+    if (this.state.conversant.length>0 && this.state.messages.length>0){
     return(
       <div>
       <Nav/>
         <div className="ui text container">
           <h2>{localStorage.room_name}</h2>
           {this.messageFormatter(this.state.messages)}
-        <form onSubmit={this.newMessage} className="ui form">
-        <div className="field">
-          <label>Message</label>
-          <textarea placeholder="Type yur message here">
-          </textarea>
-        </div>
-        <br></br>
-          <button type="submit" className="ui button" role="button">Submit</button>
-        </form>
+          <div className="ui focus input">
+            <input type="text" placeholder="Search..." id="message"/>
+          </div>
+          <button className="ui button" onClick={this.newMessage}> Submit </button>
         </div>
       </div>
     )} else{

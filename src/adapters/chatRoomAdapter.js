@@ -1,7 +1,7 @@
 export default class ChatRoomAdapter  {
 
   static gatherChatRooms(user_id){
-    return fetch("https://pwabackend.herokuapp.com/api/chatrooms", {
+    return fetch("http://localhost:3000/api/chatrooms", {
       method: 'POST',
       headers: this.headers(),
       body: JSON.stringify({
@@ -11,7 +11,7 @@ export default class ChatRoomAdapter  {
   }
 
   static enterRoom(name){
-    return fetch("https://pwabackend.herokuapp.com/api/chatrooms", {
+    return fetch("http://localhost:3000/api/chatrooms", {
       method: 'POST',
       headers: this.headers(),
       body: JSON.stringify({
@@ -20,8 +20,21 @@ export default class ChatRoomAdapter  {
     }).then(response => response.json() )
   }
 
+  static findUser(chatName){
+    return fetch("http://localhost:3000/api/chatrooms", {
+      method: 'POST',
+      headers: this.headers(),
+      body: JSON.stringify({
+        room : chatName,
+        patient: true
+      })
+    }).then(response => response.json() )
+  }
+
+
+
   static newChat(patient,dob,phone,room_name,user_id,message){
-    return fetch("https://pwabackend.herokuapp.com/api/chatrooms", {
+    return fetch("http://localhost:3000/api/chatrooms", {
       method: 'POST',
       headers: this.headers(),
       body: JSON.stringify({

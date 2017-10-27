@@ -17,7 +17,8 @@ export default class HomeContainer extends Component {
     super()
     this.state = {
       user: null,
-      admin: false
+      admin: false,
+      roomMessages: []
     }
     this.onVerifySubmit = this.onVerifySubmit.bind(this)
     this.onLoginSubmit = this.onLoginSubmit.bind(this)

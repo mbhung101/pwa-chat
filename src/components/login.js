@@ -7,6 +7,7 @@ export default class Login extends Component {
     if(localStorage.user_id && localStorage.user_id !== 'p' ){
       return(
         <div className="ui container" style={{padding:60}}>
+        <Nav/>
         <button style={{width:250,height:100}}className="ui red button" onClick={this.props.onLogout}>Logout</button>
         </div>
       )
