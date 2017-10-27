@@ -1,7 +1,7 @@
 export default class ChatRoomAdapter  {
 
   static gatherChatRooms(user_id){
-    return fetch("https://glacial-thicket-44922.herokuapp.com/api/chatrooms", {
+    return fetch("https://sheltered-hamlet-95377.herokuapp.com/api/chatrooms", {
       method: 'POST',
       headers: this.headers(),
       body: JSON.stringify({
@@ -11,7 +11,7 @@ export default class ChatRoomAdapter  {
   }
 
   static enterRoom(name){
-    return fetch("https://glacial-thicket-44922.herokuapp.com/api/chatrooms", {
+    return fetch("https://sheltered-hamlet-95377.herokuapp.com/api/chatrooms", {
       method: 'POST',
       headers: this.headers(),
       body: JSON.stringify({
@@ -21,7 +21,7 @@ export default class ChatRoomAdapter  {
   }
 
   static findUser(chatName){
-    return fetch("https://glacial-thicket-44922.herokuapp.com/api/chatrooms", {
+    return fetch("https://sheltered-hamlet-95377.herokuapp.com/api/chatrooms", {
       method: 'POST',
       headers: this.headers(),
       body: JSON.stringify({
@@ -32,7 +32,7 @@ export default class ChatRoomAdapter  {
   }
 
   static newChat(patient,dob,phone,room_name,user_id,message){
-    return fetch("https://glacial-thicket-44922.herokuapp.com/api/chatrooms", {
+    return fetch("https://sheltered-hamlet-95377.herokuapp.com/api/chatrooms", {
       method: 'POST',
       headers: this.headers(),
       body: JSON.stringify({
